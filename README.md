@@ -11,13 +11,12 @@ Configuration:
 Change "delay" to the value your garagedoor uses to close or open. Any time over this limit results in error in Home Assistant.
 
 Connect the relay and magnet sensors according to the code (named Dx).
-
 Garagedoor 1
-Relay D1
-Magnet open position D6
-Magnet closed position D5
+- Relay D1
+- Magnet open position D6
+- Magnet closed position D5
 
 Garagedoor 2
-Relay D2
-Magnet open position D4
-Magnet closed position D3
+- Relay D2
+- Magnet open position D4
+- Magnet closed position D3
