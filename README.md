@@ -1,5 +1,5 @@
 Garagedoor opener based on the work of Alex Reid (https://reid-projects.com/control-garage-door-home-assistant-esphome-budget/) . 
-Since I have two garagedoors I needed to duplicate the code so that it works for booth.
+Since I have two garagedoors I needed to duplicate the code so that it works for booth doors.
 
 Hardware:
 - NodeMCU ESP8266
