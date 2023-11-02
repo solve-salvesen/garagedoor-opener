@@ -1,5 +1,10 @@
 captive_portal:
 
+web_server:
+    port: 80
+    log: False
+    ota: False
+
 text_sensor:
   - platform: wifi_info
     ip_address:
@@ -7,8 +12,12 @@ text_sensor:
 
 switch:
   - platform: template
-    name: "Virtual Lock"
-    id: virtual_lock
+    name: "Virtual Lock Port 1"
+    id: virtual_lock_door1
+    optimistic: true
+  - platform: template
+    name: "Virtual Lock Port 2"
+    id: virtual_lock_door2
     optimistic: true
   - platform: gpio
     pin: GPIO5
@@ -54,7 +63,7 @@ binary_sensor:
       mode:
         input: true
         pullup: true
-    name: "Garagedoor 2 Closed sensor D3"
+    name: "Garagedoor 2 Lukket sensor D3"
     id: close_endstop_binary_sensor_door2
     internal: true
     on_press:
@@ -90,7 +99,7 @@ binary_sensor:
       mode:
         input: true
         pullup: true
-    name: "Garagedoor 2 Open sensor D4"
+    name: "Garagedoor 2 Åpen sensor D4"
     id: open_endstop_binary_sensor_door2
     internal: true
     on_press:
@@ -120,7 +129,7 @@ binary_sensor:
       mode:
         input: true
         pullup: true
-    name: "Garagedoor 1 Closed sensor D5"
+    name: "Garagedoor 1 Lukket sensor D5"
     id: close_endstop_binary_sensor_door1
     internal: true
     on_press:
@@ -156,7 +165,7 @@ binary_sensor:
       mode:
         input: true
         pullup: true
-    name: "Garagedoor 1 Open sensor D6"
+    name: "Garagedoor 1 Åpen sensor D6"
     id: open_endstop_binary_sensor_door1
     internal: true
     on_press:
@@ -198,7 +207,7 @@ cover:
         - if:
            condition:
              - and:
-               - switch.is_off: virtual_lock
+               - switch.is_off: virtual_lock_door2
                - binary_sensor.is_on: close_endstop_binary_sensor_door2
            then: 
              - switch.turn_on: door_relay_door2
@@ -206,7 +215,7 @@ cover:
       - if:
            condition:
              - and:
-               - switch.is_off: virtual_lock
+               - switch.is_off: virtual_lock_door2
                - binary_sensor.is_on: open_endstop_binary_sensor_door2
            then: 
              - switch.turn_on: door_relay_door2
@@ -214,7 +223,7 @@ cover:
       - if:
            condition:
              - and:
-               - switch.is_off: virtual_lock
+               - switch.is_off: virtual_lock_door2
                - binary_sensor.is_off: close_endstop_binary_sensor_door2
                - binary_sensor.is_off: open_endstop_binary_sensor_door2
            then: 
@@ -227,7 +236,7 @@ cover:
         - if:
            condition:
              - and:
-               - switch.is_off: virtual_lock
+               - switch.is_off: virtual_lock_door1
                - binary_sensor.is_on: close_endstop_binary_sensor_door1
            then: 
              - switch.turn_on: door_relay_door1
@@ -235,7 +244,7 @@ cover:
       - if:
            condition:
              - and:
-               - switch.is_off: virtual_lock
+               - switch.is_off: virtual_lock_door1
                - binary_sensor.is_on: open_endstop_binary_sensor_door1
            then: 
              - switch.turn_on: door_relay_door1
@@ -243,7 +252,7 @@ cover:
       - if:
            condition:
              - and:
-               - switch.is_off: virtual_lock
+               - switch.is_off: virtual_lock_door1
                - binary_sensor.is_off: close_endstop_binary_sensor_door1
                - binary_sensor.is_off: open_endstop_binary_sensor_door1
            then: 
